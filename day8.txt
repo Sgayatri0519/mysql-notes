@@ -1,0 +1,203 @@
+day8
+------
+what is operator?
+operator is a symbol is perform a specific task.
+
+syntax
+------------
+operand  operator  operand
+  a         +         b
+
+types of operators
+-------------------
+mysql> CREATE TABLE EMPLOYEES (
+    ->     EMP_ID CHAR(5),
+    ->     FNAME VARCHAR(50),
+    ->     LNAME VARCHAR(50),
+    ->     AGE INT,
+    ->     DOJ DATE,
+    ->     ADDRESS TINYTEXT,
+    ->     DEPT VARCHAR(20)
+    -> );
+ERROR 1050 (42S01): Table 'employees' already exists
+mysql> CREATE TABLE EMPLOYEES (
+    ->     EMP_ID CHAR(5),
+    ->     FNAME VARCHAR(50),
+    ->     LNAME VARCHAR(50),
+    ->     AGE INT,
+    ->     DOJ DATE,
+    ->     ADDRESS TINYTEXT,
+    ->     DEPT VARCHAR(20)
+    -> ^C
+mysql>  CREATE TABLE students(
+    ->  EMP_ID CHAR(5),
+    ->     FNAME VARCHAR(50),
+    ->     LNAME VARCHAR(50),
+    ->     AGE INT,
+    ->     DOJ DATE,
+    ->     ADDRESS TINYTEXT,
+    ->     DEPT VARCHAR(20)
+    -> );
+ERROR 1050 (42S01): Table 'students' already exists
+mysql>  CREATE TABLE staff(
+    ->  EMP_ID CHAR(5),
+    ->  FNAME VARCHAR(50),
+    ->  AGE INT,
+    ->  DOJ DATE,
+    -> ADDRESS TINYTEXT,
+    ->  DEPT VARCHAR(20)
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> SHOW TABLES;
++-----------------+
+| Tables_in_pfs3  |
++-----------------+
+| backupemployees |
+| company_staff   |
+| employees       |
+| products        |
+| school          |
+| staff           |
+| student         |
+| students        |
++-----------------+
+8 rows in set (0.01 sec)
+
+mysql> DESC EMPLOYEES;
++------------+--------------+------+-----+---------+----------------+
+| Field      | Type         | Null | Key | Default | Extra          |
++------------+--------------+------+-----+---------+----------------+
+| EMPID      | int          | NO   | PRI | NULL    | auto_increment |
+| NAME       | varchar(100) | YES  |     | NULL    |                |
+| DEPARTMENT | varchar(50)  | YES  |     | NULL    |                |
++------------+--------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> SHOW COLUMNS FROM STAFF;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| EMP_ID  | char(5)     | YES  |     | NULL    |       |
+| FNAME   | varchar(50) | YES  |     | NULL    |       |
+| AGE     | int         | YES  |     | NULL    |       |
+| DOJ     | date        | YES  |     | NULL    |       |
+| ADDRESS | tinytext    | YES  |     | NULL    |       |
+| DEPT    | varchar(20) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> ALTER TABLE Staff MODIFY FNAME VARCHAR(30);
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> SHOW COLUMNS FROM STAFF;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| EMP_ID  | char(5)     | YES  |     | NULL    |       |
+| FNAME   | varchar(30) | YES  |     | NULL    |       |
+| AGE     | int         | YES  |     | NULL    |       |
+| DOJ     | date        | YES  |     | NULL    |       |
+| ADDRESS | tinytext    | YES  |     | NULL    |       |
+| DEPT    | varchar(20) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> ALTER TABLE STAFF ADD LOCATION TINYTEXT;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> CREATE TABLE StudentScores (
+    ->    id INT,
+    ->    name VARCHAR(100),
+    ->    subject VARCHAR(50),
+    ->    marks INT
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> INSERT INTO StudentScores VALUES
+    -> (1, 'Alice', 'Math', 95),
+    -> (2, 'Bob', 'Math', 76),
+    -> (3, 'Charlie', 'Math', 59),
+    -> (4, 'Diana', 'Math', 88),
+    -> (5, 'Eve', 'Math', 40),
+    -> (6, 'Frank', 'Math', 95);
+Query OK, 6 rows affected (0.01 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> 
+mysql> DELETE FROM StudentScore
+    -> WHERE StudentID = 101;
+ERROR 1146 (42S02): Table 'pfs3.studentscore' doesn't exist
+mysql> DELETE FROM StudentScores
+    -> WHERE StudentID = 101;
+ERROR 1054 (42S22): Unknown column 'StudentID' in 'where clause'
+mysql> CREATE TABLE EMPLOYEES (
+    ->     EMP_ID CHAR(5),
+    ->     FNAME VARCHAR(50),
+    ->     LNAME VARCHAR(50),
+    ->     AGE INT,
+    ->     DOJ DATE,
+    ->     ADDRESS TINYTEXT,
+    ->     DEPT VARCHAR(20)
+    -> );
+ERROR 1050 (42S01): Table 'employees' already exists
+mysql>  SHOW TABLES;
++-----------------+
+| Tables_in_pfs3  |
++-----------------+
+| backupemployees |
+| company_staff   |
+| employees       |
+| products        |
+| school          |
+| staff           |
+| student         |
+| students        |
+| studentscores   |
++-----------------+
+9 rows in set (0.00 sec)
+
+mysql> DESC EMPLOYEES;
++------------+--------------+------+-----+---------+----------------+
+| Field      | Type         | Null | Key | Default | Extra          |
++------------+--------------+------+-----+---------+----------------+
+| EMPID      | int          | NO   | PRI | NULL    | auto_increment |
+| NAME       | varchar(100) | YES  |     | NULL    |                |
+| DEPARTMENT | varchar(50)  | YES  |     | NULL    |                |
++------------+--------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> SHOW COLUMNS FROM EMPLOYEES;
++------------+--------------+------+-----+---------+----------------+
+| Field      | Type         | Null | Key | Default | Extra          |
++------------+--------------+------+-----+---------+----------------+
+| EMPID      | int          | NO   | PRI | NULL    | auto_increment |
+| NAME       | varchar(100) | YES  |     | NULL    |                |
+| DEPARTMENT | varchar(50)  | YES  |     | NULL    |                |
++------------+--------------+------+-----+---------+----------------+
+3 rows in set (0.00 sec)
+select *from employee where department='hr' or salary<35000;
+select*from employees where department='finance' or (salary>30000)
+update from employees set salary=salary+2000
+where department='it'
+and isactive=true
+and salary<60000;
+select*from employees where department='it';
+delete*from employee;
+insert into employees values(
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
