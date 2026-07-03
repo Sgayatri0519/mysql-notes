@@ -1,0 +1,442 @@
+day5
+-------
+mysql> use pfs3
+Database changed
+mysql> select*from employees;
+Empty set (0.00 sec)
+
+mysql> SHOW TABLES;
++----------------+
+| Tables_in_pfs3 |
++----------------+
+| company_staff  |
+| employees      |
++----------------+
+2 rows in set (0.01 sec)
+
+mysql> DESC EMPLOYEES;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| EMPID     | char(5)     | YES  |     | NULL    |       |
+| firstname | varchar(30) | YES  |     | NULL    |       |
+| lastname  | varchar(80) | YES  |     | NULL    |       |
+| AGE       | int         | YES  |     | NULL    |       |
+| DOJ       | date        | YES  |     | NULL    |       |
+| ADDRESS   | tinytext    | YES  |     | NULL    |       |
+| DEPT      | varchar(20) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+7 rows in set (0.01 sec)
+
+mysql> NSERT INTO EMPLOYEE(EMPID, FIRSTNAME, LASTNAME, AGE, DOJ, ADDRESS, DEPT)
+    -> VALUES
+    -> ('E001','MOSURU','SAI',22,'2026-06-27','VIZ','CSE');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NSERT INTO EMPLOYEE(EMPID, FIRSTNAME, LASTNAME, AGE, DOJ, ADDRESS, DEPT)
+VALUES
+' at line 1
+mysql> ('E001','MOSURU','SAI',21,'2004-11-03','VIJ','CSE');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''E001','MOSURU','SAI',21,'2004-11-03','VIJ','CSE')' at line 1
+mysql> NSERT INTO EMPLOYEE(EMPID, FIRSTNAME, LASTNAME, AGE, DOJ, ADDRESS, DEPT)
+    ->  VALUES
+    ->  ('E001','MOSURU','SAI',21,'2004-11-03','VIJ','CSE');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'NSERT INTO EMPLOYEE(EMPID, FIRSTNAME, LASTNAME, AGE, DOJ, ADDRESS, DEPT)
+ VALUES' at line 1
+mysql> INSERT INTO EMPLOYEES(EMPID, FIRSTNAME, LASTNAME, AGE, DOJ, ADDRESS, DEPT)
+    ->  VALUES
+    ->  ('E001','MOSURU','SAI',21,'2004-11-03','VIZ','CSE');
+Query OK, 1 row affected (0.01 sec)
+
+mysql>  SELECT * FROM EMPLOYEES;
++-------+-----------+----------+------+------------+---------+------+
+| EMPID | firstname | lastname | AGE  | DOJ        | ADDRESS | DEPT |
++-------+-----------+----------+------+------------+---------+------+
+| E001  | MOSURU    | SAI      |   21 | 2004-11-03 | VIZ     | CSE  |
++-------+-----------+----------+------+------------+---------+------+
+1 row in set (0.00 sec)
+
+mysql>  INSERT INTO EMPLOYEES(EMPID, FIRSTNAME, LASTNAME, AGE, DOJ, ADDRESS, DEPT)
+    -> VALUES
+    -> ('E002','MOSURU','VAMSI',22,'2026-06-27','VIJ','RABOTICS');
+Query OK, 1 row affected (0.01 sec)
+
+mysql>  INSERT INTO EMPLOYEES(EMPID, FIRSTNAME, LASTNAME, AGE, DOJ, ADDRESS, DEPT)
+    ->  VALUES
+    -> ('E003','MOSURU','GAYATHRI',22,'2005-11-19','VIJ','SALES');;
+Query OK, 1 row affected (0.01 sec)
+
+ERROR: 
+No query specified
+
+mysql> SELECT * FROM EMPLOYEES;
++-------+-----------+----------+------+------------+---------+----------+
+| EMPID | firstname | lastname | AGE  | DOJ        | ADDRESS | DEPT     |
++-------+-----------+----------+------+------------+---------+----------+
+| E001  | MOSURU    | SAI      |   21 | 2004-11-03 | VIZ     | CSE      |
+| E002  | MOSURU    | VAMSI    |   22 | 2026-06-27 | VIJ     | RABOTICS |
+| E003  | MOSURU    | GAYATHRI |   22 | 2005-11-19 | VIJ     | SALES    |
++-------+-----------+----------+------+------------+---------+----------+
+3 rows in set (0.00 sec)
+
+mysql>  DESC COMPANY_STAFF;
++---------------+----------------------------------------------------+------+-----+---------+-------+
+| Field         | Type                                               | Null | Key | Default | Extra |
++---------------+----------------------------------------------------+------+-----+---------+-------+
+| company_name  | varchar(20)                                        | YES  |     | NULL    |       |
+| emp_id        | int                                                | YES  |     | NULL    |       |
+| age           | tinyint                                            | YES  |     | NULL    |       |
+| experience    | smallint                                           | YES  |     | NULL    |       |
+| gender        | char(1)                                            | YES  |     | NULL    |       |
+| employee_name | varchar(80)                                        | YES  |     | NULL    |       |
+| qualification | varchar(20)                                        | YES  |     | NULL    |       |
+| address       | tinytext                                           | YES  |     | NULL    |       |
+| salary        | decimal(6,3)                                       | YES  |     | NULL    |       |
+| department    | enum('HR','IT','SALES','FINANCE','SUPPORT')        | YES  |     | NULL    |       |
+| status        | varchar(10)                                        | YES  |     | NULL    |       |
+| skills        | set('JAVA','PYTHON','SQL','EXCEL','COMMUNICATION') | YES  |     | NULL    |       |
+| last_updated  | date                                               | YES  |     | NULL    |       |
+| date_of_join  | date                                               | YES  |     | NULL    |       |
+| email         | varchar(20)                                        | YES  |     | NULL    |       |
+| phone_number  | int                                                | YES  |     | NULL    |       |
++---------------+----------------------------------------------------+------+-----+---------+-------+
+16 rows in set (0.01 sec)
+
+mysql> INSERT INTO EMPLOYEES(COMPANY_NAME, EMP_ID, AGE, EXPERIENCE, GENDER, EMPLOYEE_NAME, QUALIFICATION, ADDRESS, SALARY, BONUS, DEPARTMENT, STATUS, SKILLS, JOINING_DATE, EMAIL, PHONE_NUMBER)^C
+    -> SELECT * FROM EMPLOYEES;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '^C
+SELECT * FROM EMPLOYEES' at line 1
+mysql> INSERT INTO TABLE-NAME VALUES(VALUE1,VALUE2,VALUE3......VALUESN);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'TABLE-NAME VALUES(VALUE1,VALUE2,VALUE3......VALUESN)' at line 1
+mysql> SELECT * FROM EMPLOYEES;
++-------+-----------+----------+------+------------+---------+----------+
+| EMPID | firstname | lastname | AGE  | DOJ        | ADDRESS | DEPT     |
++-------+-----------+----------+------+------------+---------+----------+
+| E001  | MOSURU    | SAI      |   21 | 2004-11-03 | VIZ     | CSE      |
+| E002  | MOSURU    | VAMSI    |   22 | 2026-06-27 | VIJ     | RABOTICS |
+| E003  | MOSURU    | GAYATHRI |   22 | 2005-11-19 | VIJ     | SALES    |
++-------+-----------+----------+------+------------+---------+----------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM EMPLOYEES;
++-------+-----------+----------+------+------------+---------+----------+
+| EMPID | firstname | lastname | AGE  | DOJ        | ADDRESS | DEPT     |
++-------+-----------+----------+------+------------+---------+----------+
+| E001  | MOSURU    | SAI      |   21 | 2004-11-03 | VIZ     | CSE      |
+| E002  | MOSURU    | VAMSI    |   22 | 2026-06-27 | VIJ     | RABOTICS |
+| E003  | MOSURU    | GAYATHRI |   22 | 2005-11-19 | VIJ     | SALES    |
++-------+-----------+----------+------+------------+---------+----------+
+3 rows in set (0.00 sec)
+
+mysql> INSERT INTO TABLE-NAME VALUES(VALUE1,VALUE2,VALUE3......VALUESN);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'TABLE-NAME VALUES(VALUE1,VALUE2,VALUE3......VALUESN)' at line 1
+mysql> INSERT INTO TABLE-NAME VALUES(VALUE1,VALUE2,VALUE3......VALUESN);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'TABLE-NAME VALUES(VALUE1,VALUE2,VALUE3......VALUESN)' at line 1
+mysql>  INSERT INTO EMPLOYEES(EMPID, FIRSTNAME, LASTNAME, AGE, DOJ, ADDRESS, DEPT)
+    -> VALUES
+    -> ('E004','MOSURU','PAVAN',26,'2000-06-27','VIJ','PYTHON'),
+    -> ('E004','MOSURU','MANI',26,'2000-06-8','VIJ','PYTHON')'
+    '> ('E004','MOSURU','PANDU',26,'2000-06-8','VIJ','JAVA')
+    '> ('E007','MOSURU','SANKAR',40,'1988-06-27','VIJ','c');
+    '> ^C
+mysql> INSERT INTO EMPLOYEES(EMPID, FIRSTNAME, LASTNAME, AGE, DOJ, ADDRESS, DEPT)
+    ->  VALUES
+    -> ('E004','SAI','MOSURU',22,'2026-06-27','VIJ','java'),
+    ->  ('E005','mani','mercy',23,'2026-06-27','VIJ','python'),
+    -> ('E006','rama','laxmi',23,'2026-06-27','VIJ','c'),
+    -> ('E007','ravana','chigadam',23,'2026-06-27','VIJ','c');
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql>  INSERT INTO EMPLOYEES(EMPID, FIRSTNAME, AGE, ADDRESS, DEPT)
+    ->  VALUES
+    ->  ('E009','PANDU',23,'VIJ','c');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO EMPLOYEES SET VALUES=VALUES;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'VALUES=VALUES' at line 1
+mysql>  INSERT INTO EMPLOYEES(EMPID, FIRSTNAME, LASTNAME, AGE, DOJ, ADDRESS, DEPT)
+    -> VALUES
+    -> ('E008','MOSURU','SANKAR''2026-06-27','VIJ');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> ('E008','PRABHAKAR','RAJANA','2026-06-27','VIJ');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''E008','PRABHAKAR','RAJANA','2026-06-27','VIJ')' at line 1
+mysql>  INSERT INTO EMPLOYEES(EMPID, FIRSTNAME, LASTNAME, AGE, DOJ, ADDRESS, DEPT)
+    -> VALUES
+    -> ('E004','SAI','MOSURU',22,'2026-06-27','VIJ','java'),
+    -> ^C
+mysql> SELECT * FROM EMPLOYEES;
++-------+-----------+----------+------+------------+---------+----------+
+| EMPID | firstname | lastname | AGE  | DOJ        | ADDRESS | DEPT     |
++-------+-----------+----------+------+------------+---------+----------+
+| E001  | MOSURU    | SAI      |   21 | 2004-11-03 | VIZ     | CSE      |
+| E002  | MOSURU    | VAMSI    |   22 | 2026-06-27 | VIJ     | RABOTICS |
+| E003  | MOSURU    | GAYATHRI |   22 | 2005-11-19 | VIJ     | SALES    |
+| E004  | SAI       | MOSURU   |   22 | 2026-06-27 | VIJ     | java     |
+| E005  | mani      | mercy    |   23 | 2026-06-27 | VIJ     | python   |
+| E006  | rama      | laxmi    |   23 | 2026-06-27 | VIJ     | c        |
+| E007  | ravana    | chigadam |   23 | 2026-06-27 | VIJ     | c        |
+| E009  | PANDU     | NULL     |   23 | NULL       | VIJ     | c        |
++-------+-----------+----------+------+------------+---------+----------+
+8 rows in set (0.00 sec)
+
+mysql> INSERT INTO EMPLOYEES(EMPID, FIRSTNAME, AGE, ADDRESS, DEPT)
+    -> VALUES
+    -> ('E004','CHINTU','MOSURU',22,'2026-06-27','VIJ','java'),
+    -> ('E004','CHINNI','MOSURU',22,'2026-06-27','VIJ','java');
+ERROR 1136 (21S01): Column count doesn't match value count at row 1
+mysql> ('E004','CHINTU','MOSURU',22,'2026-06-27','VIJ','java');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''E004','CHINTU','MOSURU',22,'2026-06-27','VIJ','java')' at line 1
+mysql> INSERT INTO EMPLOYEES(EMPID, FIRSTNAME, AGE, ADDRESS, DEPT)
+    -> ^C
+mysql>  INSERT INTO EMPLOYEES(EMPID, FIRSTNAME, AGE, ADDRESS, DEPT)
+    -> VALUES
+    -> ('E009','NARAYANA',23,'VIJ','c');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM EMPLOYEES;
++-------+-----------+----------+------+------------+---------+----------+
+| EMPID | firstname | lastname | AGE  | DOJ        | ADDRESS | DEPT     |
++-------+-----------+----------+------+------------+---------+----------+
+| E001  | MOSURU    | SAI      |   21 | 2004-11-03 | VIZ     | CSE      |
+| E002  | MOSURU    | VAMSI    |   22 | 2026-06-27 | VIJ     | RABOTICS |
+| E003  | MOSURU    | GAYATHRI |   22 | 2005-11-19 | VIJ     | SALES    |
+| E004  | SAI       | MOSURU   |   22 | 2026-06-27 | VIJ     | java     |
+| E005  | mani      | mercy    |   23 | 2026-06-27 | VIJ     | python   |
+| E006  | rama      | laxmi    |   23 | 2026-06-27 | VIJ     | c        |
+| E007  | ravana    | chigadam |   23 | 2026-06-27 | VIJ     | c        |
+| E009  | PANDU     | NULL     |   23 | NULL       | VIJ     | c        |
+| E009  | NARAYANA  | NULL     |   23 | NULL       | VIJ     | c        |
++-------+-----------+----------+------+------------+---------+----------+
+9 rows in set (0.00 sec)
+
+mysql> INSERT INTO EMPLOYEES SET EMPID='E010',FIRSTNAME='ROHITH',LASTNAME='KUMAR',AGE=19,DOJ='2026-06-27',ADDRESS='VIJ',DEPT='CSE';
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT * FROM EMPLOYEES;
++-------+-----------+----------+------+------------+---------+----------+
+| EMPID | firstname | lastname | AGE  | DOJ        | ADDRESS | DEPT     |
++-------+-----------+----------+------+------------+---------+----------+
+| E001  | MOSURU    | SAI      |   21 | 2004-11-03 | VIZ     | CSE      |
+| E002  | MOSURU    | VAMSI    |   22 | 2026-06-27 | VIJ     | RABOTICS |
+| E003  | MOSURU    | GAYATHRI |   22 | 2005-11-19 | VIJ     | SALES    |
+| E004  | SAI       | MOSURU   |   22 | 2026-06-27 | VIJ     | java     |
+| E005  | mani      | mercy    |   23 | 2026-06-27 | VIJ     | python   |
+| E006  | rama      | laxmi    |   23 | 2026-06-27 | VIJ     | c        |
+| E007  | ravana    | chigadam |   23 | 2026-06-27 | VIJ     | c        |
+| E009  | PANDU     | NULL     |   23 | NULL       | VIJ     | c        |
+| E009  | NARAYANA  | NULL     |   23 | NULL       | VIJ     | c        |
+| E010  | ROHITH    | KUMAR    |   19 | 2026-06-27 | VIJ     | CSE      |
++-------+-----------+----------+------+------------+---------+----------+
+10 rows in set (0.00 sec)
+
+mysql> UPDATE EMPLOYEES SET DOJ='20-06-28' WHERE LASTNAME='CHIGADAM';
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql>  SELECT * FROM EMPLOYEES;
++-------+-----------+----------+------+------------+---------+----------+
+| EMPID | firstname | lastname | AGE  | DOJ        | ADDRESS | DEPT     |
++-------+-----------+----------+------+------------+---------+----------+
+| E001  | MOSURU    | SAI      |   21 | 2004-11-03 | VIZ     | CSE      |
+| E002  | MOSURU    | VAMSI    |   22 | 2026-06-27 | VIJ     | RABOTICS |
+| E003  | MOSURU    | GAYATHRI |   22 | 2005-11-19 | VIJ     | SALES    |
+| E004  | SAI       | MOSURU   |   22 | 2026-06-27 | VIJ     | java     |
+| E005  | mani      | mercy    |   23 | 2026-06-27 | VIJ     | python   |
+| E006  | rama      | laxmi    |   23 | 2026-06-27 | VIJ     | c        |
+| E007  | ravana    | chigadam |   23 | 2020-06-28 | VIJ     | c        |
+| E009  | PANDU     | NULL     |   23 | NULL       | VIJ     | c        |
+| E009  | NARAYANA  | NULL     |   23 | NULL       | VIJ     | c        |
+| E010  | ROHITH    | KUMAR    |   19 | 2026-06-27 | VIJ     | CSE      |
++-------+-----------+----------+------+------------+---------+----------+
+10 rows in set (0.00 sec)
+
+mysql> SELECT * FROM EMPLOYEES;
++-------+-----------+----------+------+------------+---------+----------+
+| EMPID | firstname | lastname | AGE  | DOJ        | ADDRESS | DEPT     |
++-------+-----------+----------+------+------------+---------+----------+
+| E001  | MOSURU    | SAI      |   21 | 2004-11-03 | VIZ     | CSE      |
+| E002  | MOSURU    | VAMSI    |   22 | 2026-06-27 | VIJ     | RABOTICS |
+| E003  | MOSURU    | GAYATHRI |   22 | 2005-11-19 | VIJ     | SALES    |
+| E004  | SAI       | MOSURU   |   22 | 2026-06-27 | VIJ     | java     |
+| E005  | mani      | mercy    |   23 | 2026-06-27 | VIJ     | python   |
+| E006  | rama      | laxmi    |   23 | 2026-06-27 | VIJ     | c        |
+| E007  | ravana    | chigadam |   23 | 2020-06-28 | VIJ     | c        |
+| E009  | PANDU     | NULL     |   23 | NULL       | VIJ     | c        |
+| E009  | NARAYANA  | NULL     |   23 | NULL       | VIJ     | c        |
+| E010  | ROHITH    | KUMAR    |   19 | 2026-06-27 | VIJ     | CSE      |
++-------+-----------+----------+------+------------+---------+----------+
+10 rows in set (0.00 sec)
+
+mysql> DELECT FROM EMPLOYEES WHERE EMPID='EO10';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'DELECT FROM EMPLOYEES WHERE EMPID='EO10'' at line 1
+mysql> DELETE FROM EMPLOYEES
+    -> WHERE EMPID = 'E010';
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT * FROM EMPLOYEES;
++-------+-----------+----------+------+------------+---------+----------+
+| EMPID | firstname | lastname | AGE  | DOJ        | ADDRESS | DEPT     |
++-------+-----------+----------+------+------------+---------+----------+
+| E001  | MOSURU    | SAI      |   21 | 2004-11-03 | VIZ     | CSE      |
+| E002  | MOSURU    | VAMSI    |   22 | 2026-06-27 | VIJ     | RABOTICS |
+| E003  | MOSURU    | GAYATHRI |   22 | 2005-11-19 | VIJ     | SALES    |
+| E004  | SAI       | MOSURU   |   22 | 2026-06-27 | VIJ     | java     |
+| E005  | mani      | mercy    |   23 | 2026-06-27 | VIJ     | python   |
+| E006  | rama      | laxmi    |   23 | 2026-06-27 | VIJ     | c        |
+| E007  | ravana    | chigadam |   23 | 2020-06-28 | VIJ     | c        |
+| E009  | PANDU     | NULL     |   23 | NULL       | VIJ     | c        |
+| E009  | NARAYANA  | NULL     |   23 | NULL       | VIJ     | c        |
++-------+-----------+----------+------+------------+---------+----------+
+9 rows in set (0.00 sec)
+
+mysql> DELETE FROM EMPLOYEES
+    -> WHERE EMPID = 'E002';
+Query OK, 1 row affected (0.00 sec)
+
+mysql> SELECT * FROM EMPLOYEES;
++-------+-----------+----------+------+------------+---------+--------+
+| EMPID | firstname | lastname | AGE  | DOJ        | ADDRESS | DEPT   |
++-------+-----------+----------+------+------------+---------+--------+
+| E001  | MOSURU    | SAI      |   21 | 2004-11-03 | VIZ     | CSE    |
+| E003  | MOSURU    | GAYATHRI |   22 | 2005-11-19 | VIJ     | SALES  |
+| E004  | SAI       | MOSURU   |   22 | 2026-06-27 | VIJ     | java   |
+| E005  | mani      | mercy    |   23 | 2026-06-27 | VIJ     | python |
+| E006  | rama      | laxmi    |   23 | 2026-06-27 | VIJ     | c      |
+| E007  | ravana    | chigadam |   23 | 2020-06-28 | VIJ     | c      |
+| E009  | PANDU     | NULL     |   23 | NULL       | VIJ     | c      |
+| E009  | NARAYANA  | NULL     |   23 | NULL       | VIJ     | c      |
++-------+-----------+----------+------+------------+---------+--------+
+8 rows in set (0.00 sec)
+
+mysql> TRUNCATE TABLE EMPLOYEES;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql>  SELECT * FROM EMPLOYEES;
+Empty set (0.00 sec)
+
+mysql> DROP TABLE EMPLOYESS;
+ERROR 1051 (42S02): Unknown table 'pfs3.employess'
+mysql> DROP TABLE EMPLOYEES;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> CREATE TABLE EMPLOYEES(
+    -> EMPID INT AUTO_INCREMENT,
+    -> NAME VARCHAR(100),
+    -> DEPARTMENT VARCHAR(50)
+    -> );
+ERROR 1075 (42000): Incorrect table definition; there can be only one auto column and it must be defined as a key
+mysql> CREATE TABLE EMPLOYEES(
+    -> EMPID INT AUTO_INCREMENT,
+    -> NAME VARCHAR(100),
+    ->  DEPARTMENT VARCHAR(50)
+    -> );
+ERROR 1075 (42000): Incorrect table definition; there can be only one auto column and it must be defined as a key
+mysql> CREATE TABLE EMPLOYEES(
+    -> EMPID INT AUTO_INCREMENT PRIMARY KEY,
+    ->  NAME VARCHAR(100),
+    ->  DEPARTMENT VARCHAR(50)
+    ->  );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> INSERT INTO EMPLOYEES (NAME, DEPARTMENT)
+    -> VALUES
+    ->  ('MALLI','IT'),
+    -> ('INDU','HR');
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM EMPLOYEES;
++-------+-------+------------+
+| EMPID | NAME  | DEPARTMENT |
++-------+-------+------------+
+|     1 | MALLI | IT         |
+|     2 | INDU  | HR         |
++-------+-------+------------+
+2 rows in set (0.00 sec)
+
+mysql> INSERT INTO EMPLOYEES (NAME, DEPARTMENT)
+    ->  VALUES
+    -> ('PRABHAKAR','ROBOTICS'),
+    ->  ('SRAVYA','ROBOTICS');
+Query OK, 2 rows affected (0.00 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM EMPLOYEES;
++-------+-----------+------------+
+| EMPID | NAME      | DEPARTMENT |
++-------+-----------+------------+
+|     1 | MALLI     | IT         |
+|     2 | INDU      | HR         |
+|     3 | PRABHAKAR | ROBOTICS   |
+|     4 | SRAVYA    | ROBOTICS   |
++-------+-----------+------------+
+4 rows in set (0.00 sec)
+
+mysql>  CREATE TABLE BACKUPEMPLOYEES AS
+    -> SELECT * FROM EMPLOYEES;
+Query OK, 4 rows affected (0.02 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql>  DESC BACKUPEMPLOYEES;
++------------+--------------+------+-----+---------+-------+
+| Field      | Type         | Null | Key | Default | Extra |
++------------+--------------+------+-----+---------+-------+
+| EMPID      | int          | NO   |     | 0       |       |
+| NAME       | varchar(100) | YES  |     | NULL    |       |
+| DEPARTMENT | varchar(50)  | YES  |     | NULL    |       |
++------------+--------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> SELECT * FROM BACKUPEMPLOYEES;
++-------+-----------+------------+
+| EMPID | NAME      | DEPARTMENT |
++-------+-----------+------------+
+|     1 | MALLI     | IT         |
+|     2 | INDU      | HR         |
+|     3 | PRABHAKAR | ROBOTICS   |
+|     4 | SRAVYA    | ROBOTICS   |
++-------+-----------+------------+
+4 rows in set (0.00 sec)
+
+mysql>  CREATE TABLE PRODUCTS(
+    -> PRODUCTID INT PRIMARY KEY,
+    -> PRICE DECIMAL(10,2),
+    -> QUANTITY INT,
+    ->  TOTALAMOUNT DECIMAL(10,2) GENERATED ALWAYS AS (PRICE * QUANTITY) STORED
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> SELECT * FROM PRODUCTS;
+Empty set (0.00 sec)
+
+mysql>  INSERT INTO PRODUCTS(PRODUCTID, PRICE, QUANTITY)
+    ->  VALUES
+    -> (1,50,3),
+    -> (2,200.35,6);
+Query OK, 2 rows affected (0.00 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM PRODUCTS;
++-----------+--------+----------+-------------+
+| PRODUCTID | PRICE  | QUANTITY | TOTALAMOUNT |
++-----------+--------+----------+-------------+
+|         1 |  50.00 |        3 |      150.00 |
+|         2 | 200.35 |        6 |     1202.10 |
++-----------+--------+----------+-------------+
+2 rows in set (0.00 sec)
+
+mysql> UPDATE PRODUCTS SET PRICE=500 WHERE PRODUCTID=1;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql>  SELECT * FROM PRODUCTS;
++-----------+--------+----------+-------------+
+| PRODUCTID | PRICE  | QUANTITY | TOTALAMOUNT |
++-----------+--------+----------+-------------+
+|         1 | 500.00 |        3 |     1500.00 |
+|         2 | 200.35 |        6 |     1202.10 |
++-----------+--------+----------+-------------+
+2 rows in set (0.00 sec)
+
+mysql>  Terminal close -- exit!
+    -> Terminal close -- exit!
+mysql> tee D:Mysql notes/day6.txt
