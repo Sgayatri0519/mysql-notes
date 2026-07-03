@@ -1,0 +1,311 @@
+day6
+-------
+mysql> desc student;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| stdId    | int          | YES  |     | NULL    |       |
+| std_name | varchar(100) | YES  |     | NULL    |       |
+| mobile   | int          | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> insert into students values
+    -> (110,'neha',6789345245;)
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 2
+    -> ^C
+mysql> insert into students values
+    -> (110,'neha',6789345245);
+ERROR 1146 (42S02): Table 'da.students' doesn't exist
+mysql> insert into student values
+    -> (110,'neha',6574364598),
+    -> (111,'priya',6789542390);
+ERROR 1264 (22003): Out of range value for column 'mobile' at row 1
+mysql> drop table student;
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> create table student(
+    -> stdId int,
+    -> std_name varchar(100),
+    -> mobile varchar(50)
+    -> );
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> insert into student values
+    -> (110,'neha','8976543290');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into student values
+    -> (111,'priya','8976546754');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from student;
++-------+----------+------------+
+| stdId | std_name | mobile     |
++-------+----------+------------+
+|   110 | neha     | 8976543290 |
+|   111 | priya    | 8976546754 |
++-------+----------+------------+
+2 rows in set (0.00 sec)
+
+mysql> create user priya identified by 'priya123';
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> create user teja identified by 'priyateja';
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> grant select,update on student to priya;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> grant insert,update,delete on student to teja;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> grant select,insert,update,delete on student to teja;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> revoke update on students from priya;
+ERROR 1147 (42000): There is no such grant defined for user 'priya' on host '%' on table 'students'
+mysql> revoke update on student from priya;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> revoke delete on student from teja;
+Query OK, 0 rows affected (0.03 sec)
+
+
+
+transaction:
+================
+ a transaction is a sequence of one or more sql operations executed as single logical unit of work. it ensures that either all operations are
+completely successfully or none of them are applied to the database.
+
+Interview one-line answer:
+---------------------------
+a transaction is a logical unit of work consisting one or more sql statements that follows the ACID properties to maintain data integrity
+and consistency
+
+ACID Properties:
+-----------------
+A-->Atomicity: either all operations happen or none happen.
+C--> Consistency: the databse remains in a valid state before and after the transaction
+I-->Isolation: concurrent transactions do not interface with each other.
+D-->Durability: one committed changes are permanent even if the system crashes.
+
+
+TCL Commands:
+--------------
+1.commit
+2.rollback
+3.savepoint
+
+mysql> select * from student;
++-------+----------+------------+
+| stdId | std_name | mobile     |
++-------+----------+------------+
+|   110 | neha     | 8976543290 |
+|   112 | gowtham  | 6754893425 |
+|   113 | abhi     | 8976543290 |
++-------+----------+------------+
+3 rows in set (0.00 sec)
+
+mysql> start transaction;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> update student set std_name='sharma' where stdId=110;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student;
++-------+----------+------------+
+| stdId | std_name | mobile     |
++-------+----------+------------+
+|   110 | sharma   | 8976543290 |
+|   112 | gowtham  | 6754893425 |
+|   113 | abhi     | 8976543290 |
++-------+----------+------------+
+3 rows in set (0.00 sec)
+
+mysql> rollback;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> select * from student;
++-------+----------+------------+
+| stdId | std_name | mobile     |
++-------+----------+------------+
+|   110 | neha     | 8976543290 |
+|   112 | gowtham  | 6754893425 |
+|   113 | abhi     | 8976543290 |
++-------+----------+------------+
+3 rows in set (0.00 sec)
+
+mysql> update student set std_name='sharma' where stdId=110;
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> commit;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> slect * from student;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'slect * from student' at line 1
+mysql> select * from student;
++-------+----------+------------+
+| stdId | std_name | mobile     |
++-------+----------+------------+
+|   110 | sharma   | 8976543290 |
+|   112 | gowtham  | 6754893425 |
+|   113 | abhi     | 8976543290 |
++-------+----------+------------+
+3 rows in set (0.00 sec)
+
+mysql> rollback;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from student;
++-------+----------+------------+
+| stdId | std_name | mobile     |
++-------+----------+------------+
+|   110 | sharma   | 8976543290 |
+|   112 | gowtham  | 6754893425 |
+|   113 | abhi     | 8976543290 |
++-------+----------+------------+
+3 rows in set (0.00 sec)
+
+
+mysql> start transaction;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> insert into student values
+    -> (114,'neha','6743253098');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from student;
++-------+----------+------------+
+| stdId | std_name | mobile     |
++-------+----------+------------+
+|   110 | sharma   | 8976543290 |
+|   112 | gowtham  | 6754893425 |
+|   113 | abhi     | 8976543290 |
+|   114 | neha     | 6743253098 |
++-------+----------+------------+
+4 rows in set (0.00 sec)
+
+mysql> update student set std_name='teja' where stdId=110;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from student;
++-------+----------+------------+
+| stdId | std_name | mobile     |
++-------+----------+------------+
+|   110 | teja     | 8976543290 |
+|   112 | gowtham  | 6754893425 |
+|   113 | abhi     | 8976543290 |
+|   114 | neha     | 6743253098 |
++-------+----------+------------+
+4 rows in set (0.00 sec)
+
+mysql> delete from student where stdId=113;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from student;
++-------+----------+------------+
+| stdId | std_name | mobile     |
++-------+----------+------------+
+|   110 | teja     | 8976543290 |
+|   112 | gowtham  | 6754893425 |
+|   114 | neha     | 6743253098 |
++-------+----------+------------+
+3 rows in set (0.00 sec)
+
+mysql> rollback;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> select * from student;
++-------+----------+------------+
+| stdId | std_name | mobile     |
++-------+----------+------------+
+|   110 | sharma   | 8976543290 |
+|   112 | gowtham  | 6754893425 |
+|   113 | abhi     | 8976543290 |
++-------+----------+------------+
+3 rows in set (0.00 sec)
+
+mysql> start transaction;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> insert into student values
+    -> (114,'neha','6743253098');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> update student set std_name='teja' where stdId=110;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> savepoint sp1;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> delete from student where stdId=112;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> rollback to sp1;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from student;
++-------+----------+------------+
+| stdId | std_name | mobile     |
++-------+----------+------------+
+|   110 | teja     | 8976543290 |
+|   112 | gowtham  | 6754893425 |
+|   113 | abhi     | 8976543290 |
+|   114 | neha     | 6743253098 |
++-------+----------+------------+
+4 rows in set (0.00 sec)
+
+mysql> delete from student where stdId=114;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> commit;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> select * from student;
++-------+----------+------------+
+| stdId | std_name | mobile     |
++-------+----------+------------+
+|   110 | teja     | 8976543290 |
+|   112 | gowtham  | 6754893425 |
+|   113 | abhi     | 8976543290 |
++-------+----------+------------+
+3 rows in set (0.00 sec)
+
+mysql> -- lock
+mysql> -- 1.set transaction isolation level read commited
+mysql> set transaction isolation level read committed;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> start transaction;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> select * from student where stdId=113 for update;
++-------+----------+------------+
+| stdId | std_name | mobile     |
++-------+----------+------------+
+|   113 | abhi     | 8976543290 |
++-------+----------+------------+
+1 row in set (0.00 sec)
+
+mysql> update student set std_name='abhishek' where stdId=113;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> commit;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> select * from student;
++-------+----------+------------+
+| stdId | std_name | mobile     |
++-------+----------+------------+
+|   110 | teja     | 8976543290 |
+|   112 | gowtham  | 6754893425 |
+|   113 | abhishek | 8976543290 |
++-------+----------+------------+
+3 rows in set (0.00 sec)
+
