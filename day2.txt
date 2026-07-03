@@ -1,0 +1,76 @@
+DAY-2
+=======
+what is data, field, record, database?
+----------------------------------------
+what is data?
+-------------
+raw facts or figures without context.
+example:105,neha,50000,vsp
+
+what is field?
+---------------
+smallest unit of data in a database(column/attribute)
+example:EmpName,EmpId,EmpSalary,EmpAddress
+
+what is record?
+---------------
+collection of related fields(row/ tuple)
+example:(111,priya,70000,vsp)
+
+what is database?
+------------------
+organized collection of related records stored together.
+example:an employee database containing all employee records.
+
+CLIENT-SERVER:
+---------------
+client: the role of the client in client-server architecture is to send request to the server and to get response from the server.
+server: server is software the role of the server in client-server architecture is to take request from client.
+if the request is valid request then it wil generate some responses we can handover that response to client.if client request
+is notvalid request then it will raise the error.
+
+protocol: it has the set of rules and regulations the role of the protocol in client-server architecture is to send request from client to server.
+
+Data Models in DBMS:
+-------------------
+a data model defines how data is stored , organized and manipulated in a data base.
+1.physical data model:
+------------------------
+it describes how data is physically stored in storage devices.
+Audieence:database administrators.
+
+2.logical data model:
+---------------------
+defines the structure of data (entities, attributes, relationships) independent of physical storage areas.
+Audience:Developers and data architects
+
+3.Hierarchal data model:
+-------------------------
+data is represented as tree structure(parent child relationship)
+example:company--->departments--->employees
+
+4.Network data model:
+---------------------
+data is represented as graph with records(nodes) and relationships(edges)
+example:student enrolled in multiple courses, courses tough by multiple professors.
+
+5.Relational data model(RDBMS)
+--------------------------------
+data is stored in tables(relations) with rows(tuples) and columns(attributes)
+example: student(id,name,marks,age,dept)
+         department(dept_id,dept_name)
+
+6.entity relationship(ER Model)
+-------------------------------
+a conceptual model that shows entities(things), attributes(properties) and relationships
+
+
+
+MySQL Installation Process
+---------------------------
+after installation go to location just double click----> choose the yes option
+4options -choose custom
+next it will show
+go to MySql server
+
+https://tinyurl.com/MySQL-Batch-03
