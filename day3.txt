@@ -1,0 +1,199 @@
+day-3
+----------
+SQL identifiers
+------------------
+identifiers are names used to identify database objects such as.
+
+database names,table names,column names,view names,index names, constraints,triggers, stored procedures.
+while we are declaring an identifiers we have to fallow sme rules and regulations.
+1.the onlt allowed characters to declare identifiers a-z or A-Z or 0-9,$
+2.must be begin with a letter or underscore(_).
+3.we can't declare identifiers with reserved keywords.
+4.spaces are not considered to declare identifiers.
+5.identifiers are case sensitives.
+6.max length to declare identifiers are is characters. 
+------------------------
+SQL:structured query language
+------------
+sql is a standardized programming language specially designed for managing and manipulatation relational databases.it provides declarative syntax that allows users to define what data they want retrieve,insert,update or delete without specifying exactly how database executes this operation.
+
+types of SQL commands
+---------------------------------------
+1.DDL->create,alter,drop,truncate,rename
+2.DML->insert,update,delete,lock
+3.DCL->grant revoke
+4.TCL->commit,rollback,savepoint
+5.DQL->select
+DDL (data definition language)
+create:-by using this command to create a new databases,tables,views,indexes,triggers,stored procedures.ect.
+create databases
+--------------------
+syntax:create database database-name
+example:create database pfs2;
+
+create table
+----------------------
+syntax
+--------------------
+create table table-name(
+column-name data -type size constraint,-->constratraint is optional
+column-name data-type size constraint,
+--------------------------------------
+----------------------------------------
+);
+
+Alter:-
+3.Drop:- by using these command we can drop existing database object or table perminently.
+4.truncate:-by using this command to delete all rows present in a table.
+5.rename:it is used to rename the table names or column names...ect
+2.DML(Data manipulation language)
+1.Insert:-by using this command we can insert some records into a table.
+2.Updata:-by using this command we can update the existing records based on some conditions.
+3.Delete:--by using this command we can delete existing table records based on some conditions.
+4lock:-it can be used to contro access to a resources, ensuring that
+
+DCL(data control language)
+1.grant:-this command is used to give specific permission to a user in database this permission might be include the ability to select or delete data as we as create or drop tables.
+2.remove:- revoke command is used to take away granted permissions from user.
+
+TCL(transaction control language)
+1.Commit:-this command is used to perminently save the changes during the current transaction .
+once transaction is committed it changes become permanent and visible to other transcations.
+2.Rollback:-if an error occurs or if changes become perment and visible to other transactions.
+issued to revert the database.
+in simple it is used to undo operation changes made during the current transactions.
+3.save point:-it is used to 
+DQL(Data query language)
+select:-this command is used to retrieve data from one or more tables in a databases.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| pfs                |
+| sys                |
++--------------------+
+5 rows in set (0.04 sec)
+
+mysql> CREATE DATABASE PFS3;
+Query OK, 1 row affected (0.02 sec)
+
+mysql> SHOW DATABASES;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| pfs                |
+| pfs3               |
+| sys                |
++--------------------+
+6 rows in set (0.00 sec)
+
+mysql> USE PFS3;
+Database changed
+mysql> CREATE TABLE EMPLOYEES(
+    -> EMPID CHAR(5),
+    -> FNAME VARCHAR(100)
+    -> LNAME VARCHAR(30),
+    -> AGE INT,
+    -> DOJ DATE
+    -> ^C
+mysql> ^C
+    -> ^C
+mysql> CREATE TABLE EMPLOYEES(
+    -> EMPID CHAR(5),
+    -> FNAME VARCHAR(100),
+    -> LNAME VARCHAR(30),
+    -> AGE INT,
+    -> DOJ DATE,
+    -> ADDRESS TINYTEXT,
+    -> DEPT VARCHAR(20)
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> -- TO SHOW THE TABLE DESCRIPTION
+mysql> DESC EMPLOYEES;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| EMPID   | char(5)      | YES  |     | NULL    |       |
+| FNAME   | varchar(100) | YES  |     | NULL    |       |
+| LNAME   | varchar(30)  | YES  |     | NULL    |       |
+| AGE     | int          | YES  |     | NULL    |       |
+| DOJ     | date         | YES  |     | NULL    |       |
+| ADDRESS | tinytext     | YES  |     | NULL    |       |
+| DEPT    | varchar(20)  | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+7 rows in set (0.01 sec)
+
+mysql> SHOW COLUMNS FROM EMPLOYEES;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| EMPID   | char(5)      | YES  |     | NULL    |       |
+| FNAME   | varchar(100) | YES  |     | NULL    |       |
+| LNAME   | varchar(30)  | YES  |     | NULL    |       |
+| AGE     | int          | YES  |     | NULL    |       |
+| DOJ     | date         | YES  |     | NULL    |       |
+| ADDRESS | tinytext     | YES  |     | NULL    |       |
+| DEPT    | varchar(20)  | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+mysql> Terminal close -- exit!
