@@ -1,0 +1,793 @@
+mysql> use instagram_clone_db;
+Database changed
+mysql> show tables;
++------------------------------+
+| Tables_in_instagram_clone_db |
++------------------------------+
+| comments                     |
+| follows                      |
+| likes                        |
+| photo_tags                   |
+| photos                       |
+| tags                         |
+| users                        |
++------------------------------+
+7 rows in set (0.03 sec)
+
+mysql> select*from users;
++-----+-----------------------+---------------------+
+| id  | username              | created_at          |
++-----+-----------------------+---------------------+
+|   1 | Kenton_Kirlin         | 2017-02-16 18:22:11 |
+|   2 | Andre_Purdy85         | 2017-04-02 17:11:21 |
+|   3 | Harley_Lind18         | 2017-02-21 11:12:33 |
+|   4 | Arely_Bogan63         | 2016-08-13 01:28:43 |
+|   5 | Aniya_Hackett         | 2016-12-07 01:04:39 |
+|   6 | Travon.Waters         | 2017-04-30 13:26:14 |
+|   7 | Kasandra_Homenick     | 2016-12-12 06:50:08 |
+|   8 | Tabitha_Schamberger11 | 2016-08-20 02:19:46 |
+|   9 | Gus93                 | 2016-06-24 19:36:31 |
+|  10 | Presley_McClure       | 2016-08-07 16:25:49 |
+|  11 | Justina.Gaylord27     | 2017-05-04 16:32:16 |
+|  12 | Dereck65              | 2017-01-19 01:34:14 |
+|  13 | Alexandro35           | 2017-03-29 17:09:02 |
+|  14 | Jaclyn81              | 2017-02-06 23:29:16 |
+|  15 | Billy52               | 2016-10-05 14:10:20 |
+|  16 | Annalise.McKenzie16   | 2016-08-02 21:32:46 |
+|  17 | Norbert_Carroll35     | 2017-02-06 22:05:43 |
+|  18 | Odessa2               | 2016-10-21 18:16:56 |
+|  19 | Hailee26              | 2017-04-29 18:53:40 |
+|  20 | Delpha.Kihn           | 2016-08-31 02:42:30 |
+|  21 | Rocio33               | 2017-01-23 11:51:15 |
+|  22 | Kenneth64             | 2016-12-27 09:48:17 |
+|  23 | Eveline95             | 2017-01-23 23:14:19 |
+|  24 | Maxwell.Halvorson     | 2017-04-18 02:32:44 |
+|  25 | Tierra.Trantow        | 2016-10-03 12:49:21 |
+|  26 | Josianne.Friesen      | 2016-06-07 12:47:01 |
+|  27 | Darwin29              | 2017-03-18 03:10:07 |
+|  28 | Dario77               | 2016-08-18 07:15:03 |
+|  29 | Jaime53               | 2016-09-11 18:51:57 |
+|  30 | Kaley9                | 2016-09-23 21:24:20 |
+|  31 | Aiyana_Hoeger         | 2016-09-29 20:28:12 |
+|  32 | Irwin.Larson          | 2016-08-26 19:36:22 |
+|  33 | Yvette.Gottlieb91     | 2016-11-14 12:32:01 |
+|  34 | Pearl7                | 2016-07-08 21:42:01 |
+|  35 | Lennie_Hartmann40     | 2017-03-30 03:25:22 |
+|  36 | Ollie_Ledner37        | 2016-08-04 15:42:20 |
+|  37 | Yazmin_Mills95        | 2016-07-27 00:56:44 |
+|  38 | Jordyn.Jacobson2      | 2016-05-14 07:56:26 |
+|  39 | Kelsi26               | 2016-06-08 17:48:08 |
+|  40 | Rafael.Hickle2        | 2016-05-19 09:51:26 |
+|  41 | Mckenna17             | 2016-07-17 17:25:45 |
+|  42 | Maya.Farrell          | 2016-12-11 18:04:45 |
+|  43 | Janet.Armstrong       | 2016-10-06 07:57:44 |
+|  44 | Seth46                | 2016-07-07 11:40:27 |
+|  45 | David.Osinski47       | 2017-02-05 21:23:37 |
+|  46 | Malinda_Streich       | 2016-07-09 21:37:08 |
+|  47 | Harrison.Beatty50     | 2016-09-02 03:48:38 |
+|  48 | Granville_Kutch       | 2016-06-26 03:10:22 |
+|  49 | Morgan.Kassulke       | 2016-10-30 12:42:31 |
+|  50 | Gerard79              | 2016-08-23 19:47:44 |
+|  51 | Mariano_Koch3         | 2017-04-17 14:14:46 |
+|  52 | Zack_Kemmer93         | 2017-01-01 05:58:22 |
+|  53 | Linnea59              | 2017-02-07 07:49:34 |
+|  54 | Duane60               | 2016-12-21 04:43:38 |
+|  55 | Meggie_Doyle          | 2017-04-04 12:17:34 |
+|  56 | Peter.Stehr0          | 2016-08-22 18:05:42 |
+|  57 | Julien_Schmidt        | 2017-02-02 23:12:48 |
+|  58 | Aurelie71             | 2016-05-31 06:20:57 |
+|  59 | Cesar93               | 2016-10-18 16:42:43 |
+|  60 | Sam52                 | 2017-03-30 22:03:45 |
+|  61 | Jayson65              | 2016-10-14 19:10:53 |
+|  62 | Ressie_Stanton46      | 2016-12-20 15:09:09 |
+|  63 | Elenor88              | 2016-05-08 01:30:41 |
+|  64 | Florence99            | 2016-10-06 23:08:31 |
+|  65 | Adelle96              | 2016-10-01 00:37:57 |
+|  66 | Mike.Auer39           | 2016-07-01 17:36:15 |
+|  67 | Emilio_Bernier52      | 2016-05-06 13:04:30 |
+|  68 | Franco_Keebler64      | 2016-11-13 20:09:27 |
+|  69 | Karley_Bosco          | 2016-06-24 23:38:52 |
+|  70 | Erick5                | 2017-04-05 23:44:47 |
+|  71 | Nia_Haag              | 2016-05-14 15:38:50 |
+|  72 | Kathryn80             | 2016-10-11 09:01:57 |
+|  73 | Jaylan.Lakin          | 2016-06-10 23:58:52 |
+|  74 | Hulda.Macejkovic      | 2017-01-25 17:17:28 |
+|  75 | Leslie67              | 2016-09-21 05:14:01 |
+|  76 | Janelle.Nikolaus81    | 2016-07-21 09:26:09 |
+|  77 | Donald.Fritsch        | 2017-01-07 10:05:41 |
+|  78 | Colten.Harris76       | 2016-10-10 02:38:53 |
+|  79 | Katarina.Dibbert      | 2016-11-03 13:14:11 |
+|  80 | Darby_Herzog          | 2016-05-06 00:14:21 |
+|  81 | Esther.Zulauf61       | 2017-01-14 17:02:34 |
+|  82 | Aracely.Johnston98    | 2016-07-25 18:49:10 |
+|  83 | Bartholome.Bernhard   | 2016-11-06 02:31:23 |
+|  84 | Alysa22               | 2017-01-01 17:44:43 |
+|  85 | Milford_Gleichner42   | 2017-04-30 07:50:51 |
+|  86 | Delfina_VonRueden68   | 2017-03-21 12:02:14 |
+|  87 | Rick29                | 2017-02-24 11:25:08 |
+|  88 | Clint27               | 2016-06-02 21:40:10 |
+|  89 | Jessyca_West          | 2016-09-14 23:47:05 |
+|  90 | Esmeralda.Mraz57      | 2017-03-03 11:52:27 |
+|  91 | Bethany20             | 2016-06-03 23:31:53 |
+|  92 | Frederik_Rice         | 2016-07-06 21:56:29 |
+|  93 | Willie_Leuschke       | 2017-02-15 01:40:53 |
+|  94 | Damon35               | 2016-10-31 14:44:27 |
+|  95 | Nicole71              | 2016-05-09 17:30:22 |
+|  96 | Keenan.Schamberger60  | 2016-08-28 14:57:28 |
+|  97 | Tomas.Beatty93        | 2017-02-11 11:38:55 |
+|  98 | Imani_Nicolas17       | 2017-01-31 22:59:34 |
+|  99 | Alek_Watsica          | 2016-12-10 07:43:58 |
+| 100 | Javonte83             | 2017-03-27 22:06:37 |
++-----+-----------------------+---------------------+
+100 rows in set (0.01 sec)
+
+mysql> -- finding 5 oldest users.
+mysql> select id,username,create_at
+    -> from users
+    -> order by created_at asc;
+ERROR 1054 (42S22): Unknown column 'create_at' in 'field list'
+mysql>  select id,username,created_at
+    -> from users
+    -> order by created_at asc;
++-----+-----------------------+---------------------+
+| id  | username              | created_at          |
++-----+-----------------------+---------------------+
+|  80 | Darby_Herzog          | 2016-05-06 00:14:21 |
+|  67 | Emilio_Bernier52      | 2016-05-06 13:04:30 |
+|  63 | Elenor88              | 2016-05-08 01:30:41 |
+|  95 | Nicole71              | 2016-05-09 17:30:22 |
+|  38 | Jordyn.Jacobson2      | 2016-05-14 07:56:26 |
+|  71 | Nia_Haag              | 2016-05-14 15:38:50 |
+|  40 | Rafael.Hickle2        | 2016-05-19 09:51:26 |
+|  58 | Aurelie71             | 2016-05-31 06:20:57 |
+|  88 | Clint27               | 2016-06-02 21:40:10 |
+|  91 | Bethany20             | 2016-06-03 23:31:53 |
+|  26 | Josianne.Friesen      | 2016-06-07 12:47:01 |
+|  39 | Kelsi26               | 2016-06-08 17:48:08 |
+|  73 | Jaylan.Lakin          | 2016-06-10 23:58:52 |
+|   9 | Gus93                 | 2016-06-24 19:36:31 |
+|  69 | Karley_Bosco          | 2016-06-24 23:38:52 |
+|  48 | Granville_Kutch       | 2016-06-26 03:10:22 |
+|  66 | Mike.Auer39           | 2016-07-01 17:36:15 |
+|  92 | Frederik_Rice         | 2016-07-06 21:56:29 |
+|  44 | Seth46                | 2016-07-07 11:40:27 |
+|  34 | Pearl7                | 2016-07-08 21:42:01 |
+|  46 | Malinda_Streich       | 2016-07-09 21:37:08 |
+|  41 | Mckenna17             | 2016-07-17 17:25:45 |
+|  76 | Janelle.Nikolaus81    | 2016-07-21 09:26:09 |
+|  82 | Aracely.Johnston98    | 2016-07-25 18:49:10 |
+|  37 | Yazmin_Mills95        | 2016-07-27 00:56:44 |
+|  16 | Annalise.McKenzie16   | 2016-08-02 21:32:46 |
+|  36 | Ollie_Ledner37        | 2016-08-04 15:42:20 |
+|  10 | Presley_McClure       | 2016-08-07 16:25:49 |
+|   4 | Arely_Bogan63         | 2016-08-13 01:28:43 |
+|  28 | Dario77               | 2016-08-18 07:15:03 |
+|   8 | Tabitha_Schamberger11 | 2016-08-20 02:19:46 |
+|  56 | Peter.Stehr0          | 2016-08-22 18:05:42 |
+|  50 | Gerard79              | 2016-08-23 19:47:44 |
+|  32 | Irwin.Larson          | 2016-08-26 19:36:22 |
+|  96 | Keenan.Schamberger60  | 2016-08-28 14:57:28 |
+|  20 | Delpha.Kihn           | 2016-08-31 02:42:30 |
+|  47 | Harrison.Beatty50     | 2016-09-02 03:48:38 |
+|  29 | Jaime53               | 2016-09-11 18:51:57 |
+|  89 | Jessyca_West          | 2016-09-14 23:47:05 |
+|  75 | Leslie67              | 2016-09-21 05:14:01 |
+|  30 | Kaley9                | 2016-09-23 21:24:20 |
+|  31 | Aiyana_Hoeger         | 2016-09-29 20:28:12 |
+|  65 | Adelle96              | 2016-10-01 00:37:57 |
+|  25 | Tierra.Trantow        | 2016-10-03 12:49:21 |
+|  15 | Billy52               | 2016-10-05 14:10:20 |
+|  43 | Janet.Armstrong       | 2016-10-06 07:57:44 |
+|  64 | Florence99            | 2016-10-06 23:08:31 |
+|  78 | Colten.Harris76       | 2016-10-10 02:38:53 |
+|  72 | Kathryn80             | 2016-10-11 09:01:57 |
+|  61 | Jayson65              | 2016-10-14 19:10:53 |
+|  59 | Cesar93               | 2016-10-18 16:42:43 |
+|  18 | Odessa2               | 2016-10-21 18:16:56 |
+|  49 | Morgan.Kassulke       | 2016-10-30 12:42:31 |
+|  94 | Damon35               | 2016-10-31 14:44:27 |
+|  79 | Katarina.Dibbert      | 2016-11-03 13:14:11 |
+|  83 | Bartholome.Bernhard   | 2016-11-06 02:31:23 |
+|  68 | Franco_Keebler64      | 2016-11-13 20:09:27 |
+|  33 | Yvette.Gottlieb91     | 2016-11-14 12:32:01 |
+|   5 | Aniya_Hackett         | 2016-12-07 01:04:39 |
+|  99 | Alek_Watsica          | 2016-12-10 07:43:58 |
+|  42 | Maya.Farrell          | 2016-12-11 18:04:45 |
+|   7 | Kasandra_Homenick     | 2016-12-12 06:50:08 |
+|  62 | Ressie_Stanton46      | 2016-12-20 15:09:09 |
+|  54 | Duane60               | 2016-12-21 04:43:38 |
+|  22 | Kenneth64             | 2016-12-27 09:48:17 |
+|  52 | Zack_Kemmer93         | 2017-01-01 05:58:22 |
+|  84 | Alysa22               | 2017-01-01 17:44:43 |
+|  77 | Donald.Fritsch        | 2017-01-07 10:05:41 |
+|  81 | Esther.Zulauf61       | 2017-01-14 17:02:34 |
+|  12 | Dereck65              | 2017-01-19 01:34:14 |
+|  21 | Rocio33               | 2017-01-23 11:51:15 |
+|  23 | Eveline95             | 2017-01-23 23:14:19 |
+|  74 | Hulda.Macejkovic      | 2017-01-25 17:17:28 |
+|  98 | Imani_Nicolas17       | 2017-01-31 22:59:34 |
+|  57 | Julien_Schmidt        | 2017-02-02 23:12:48 |
+|  45 | David.Osinski47       | 2017-02-05 21:23:37 |
+|  17 | Norbert_Carroll35     | 2017-02-06 22:05:43 |
+|  14 | Jaclyn81              | 2017-02-06 23:29:16 |
+|  53 | Linnea59              | 2017-02-07 07:49:34 |
+|  97 | Tomas.Beatty93        | 2017-02-11 11:38:55 |
+|  93 | Willie_Leuschke       | 2017-02-15 01:40:53 |
+|   1 | Kenton_Kirlin         | 2017-02-16 18:22:11 |
+|   3 | Harley_Lind18         | 2017-02-21 11:12:33 |
+|  87 | Rick29                | 2017-02-24 11:25:08 |
+|  90 | Esmeralda.Mraz57      | 2017-03-03 11:52:27 |
+|  27 | Darwin29              | 2017-03-18 03:10:07 |
+|  86 | Delfina_VonRueden68   | 2017-03-21 12:02:14 |
+| 100 | Javonte83             | 2017-03-27 22:06:37 |
+|  13 | Alexandro35           | 2017-03-29 17:09:02 |
+|  35 | Lennie_Hartmann40     | 2017-03-30 03:25:22 |
+|  60 | Sam52                 | 2017-03-30 22:03:45 |
+|   2 | Andre_Purdy85         | 2017-04-02 17:11:21 |
+|  55 | Meggie_Doyle          | 2017-04-04 12:17:34 |
+|  70 | Erick5                | 2017-04-05 23:44:47 |
+|  51 | Mariano_Koch3         | 2017-04-17 14:14:46 |
+|  24 | Maxwell.Halvorson     | 2017-04-18 02:32:44 |
+|  19 | Hailee26              | 2017-04-29 18:53:40 |
+|  85 | Milford_Gleichner42   | 2017-04-30 07:50:51 |
+|   6 | Travon.Waters         | 2017-04-30 13:26:14 |
+|  11 | Justina.Gaylord27     | 2017-05-04 16:32:16 |
++-----+-----------------------+---------------------+
+100 rows in set (0.00 sec)
+
+mysql> select*from users oder by created_at limit 5;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'by created_at limit 5' at line 1
+mysql> select*from users
+    -> order by created_at limit 5;
++----+------------------+---------------------+
+| id | username         | created_at          |
++----+------------------+---------------------+
+| 80 | Darby_Herzog     | 2016-05-06 00:14:21 |
+| 67 | Emilio_Bernier52 | 2016-05-06 13:04:30 |
+| 63 | Elenor88         | 2016-05-08 01:30:41 |
+| 95 | Nicole71         | 2016-05-09 17:30:22 |
+| 38 | Jordyn.Jacobson2 | 2016-05-14 07:56:26 |
++----+------------------+---------------------+
+5 rows in set (0.00 sec)
+
+mysql> --we need to figure out what day of the week do most users register on?
+    -> 
+    -> ^C
+mysql> select dayname(created_at)as day_of_the_week,
+    -> count(*)as total_count
+    -> from users
+    -> group by day_of_the_week
+    -> order by total_count desc;
++-----------------+-------------+
+| day_of_the_week | total_count |
++-----------------+-------------+
+| Thursday        |          16 |
+| Sunday          |          16 |
+| Friday          |          15 |
+| Tuesday         |          14 |
+| Monday          |          14 |
+| Wednesday       |          13 |
+| Saturday        |          12 |
++-----------------+-------------+
+7 rows in set (0.01 sec)
+
+mysql> --find the users who have never posted a single photo.
+    -> ^C
+mysql> select users.id,username,users.created_at as user_joining_date
+    -> from users left join photes
+    -> on users.id=photes.user_id
+    -> where photes.user_id is null;
+ERROR 1146 (42S02): Table 'instagram_clone_db.photes' doesn't exist
+mysql> ^C
+mysql> SELECT users.id,
+    ->        username,
+    ->        users.created_at AS user_joining_date
+    -> FROM users
+    -> LEFT JOIN photos
+    -> ON users.id = photos.user_id
+    -> WHERE photos.user_id IS NULL;
++----+---------------------+---------------------+
+| id | username            | user_joining_date   |
++----+---------------------+---------------------+
+|  5 | Aniya_Hackett       | 2016-12-07 01:04:39 |
+|  7 | Kasandra_Homenick   | 2016-12-12 06:50:08 |
+| 14 | Jaclyn81            | 2017-02-06 23:29:16 |
+| 21 | Rocio33             | 2017-01-23 11:51:15 |
+| 24 | Maxwell.Halvorson   | 2017-04-18 02:32:44 |
+| 25 | Tierra.Trantow      | 2016-10-03 12:49:21 |
+| 34 | Pearl7              | 2016-07-08 21:42:01 |
+| 36 | Ollie_Ledner37      | 2016-08-04 15:42:20 |
+| 41 | Mckenna17           | 2016-07-17 17:25:45 |
+| 45 | David.Osinski47     | 2017-02-05 21:23:37 |
+| 49 | Morgan.Kassulke     | 2016-10-30 12:42:31 |
+| 53 | Linnea59            | 2017-02-07 07:49:34 |
+| 54 | Duane60             | 2016-12-21 04:43:38 |
+| 57 | Julien_Schmidt      | 2017-02-02 23:12:48 |
+| 66 | Mike.Auer39         | 2016-07-01 17:36:15 |
+| 68 | Franco_Keebler64    | 2016-11-13 20:09:27 |
+| 71 | Nia_Haag            | 2016-05-14 15:38:50 |
+| 74 | Hulda.Macejkovic    | 2017-01-25 17:17:28 |
+| 75 | Leslie67            | 2016-09-21 05:14:01 |
+| 76 | Janelle.Nikolaus81  | 2016-07-21 09:26:09 |
+| 80 | Darby_Herzog        | 2016-05-06 00:14:21 |
+| 81 | Esther.Zulauf61     | 2017-01-14 17:02:34 |
+| 83 | Bartholome.Bernhard | 2016-11-06 02:31:23 |
+| 89 | Jessyca_West        | 2016-09-14 23:47:05 |
+| 90 | Esmeralda.Mraz57    | 2017-03-03 11:52:27 |
+| 91 | Bethany20           | 2016-06-03 23:31:53 |
++----+---------------------+---------------------+
+26 rows in set (0.00 sec)
+
+mysql> ---most likes on a single phote.
+    -> 
+    -> ^C
+mysql> show tables;
++------------------------------+
+| Tables_in_instagram_clone_db |
++------------------------------+
+| comments                     |
+| follows                      |
+| likes                        |
+| photo_tags                   |
+| photos                       |
+| tags                         |
+| users                        |
++------------------------------+
+7 rows in set (0.00 sec)
+
+mysql> select users.id as user_id,
+    -> username,
+    -> photes.id as phote_id,
+    -> photes.image_url,
+    -> count(*)as total_likes_count
+    -> from photes
+    -> join likes
+    -> on photes.id=likes.phote_id
+    -> join users
+    -> on users.id=photes.user_id
+    -> group bt photes.id
+    -> order by total_likes_count desc;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'bt photes.id
+order by total_likes_count desc' at line 11
+mysql> select users.id as user_id,
+    ->     -> username,
+    ->     -> photes.id as phote_id,
+    ->     -> photes.image_url,
+    ->     -> count(*)as total_likes_count
+    -> ^C
+mysql> SELECT users.id AS user_id,
+    ->        username,
+    ->        photos.id AS photo_id,
+    ->        photos.image_url,
+    ->        COUNT(*) AS total_likes_count
+    -> FROM photos
+    -> JOIN likes
+    -> ON photos.id = likes.photo_id
+    -> JOIN users
+    -> ON users.id = photos.user_id
+    -> GROUP BY photos.id, users.id, username, photos.image_url
+    -> ORDER BY total_likes_count DESC;
+Empty set (0.02 sec)
+
+mysql>  select users.id as user_id,
+    ->  username,
+    -> photes.id as phote_id,
+    -> photes.image_url,
+    ->  count(*)as total_likes_count
+    -> from photes
+    ->  join likes
+    -> on users.id=photes.user_id
+    -> group by photes.id
+    -> order by total_likes_count desc;
+ERROR 1146 (42S02): Table 'instagram_clone_db.photes' doesn't exist
+mysql> SHOW TABLES;
++------------------------------+
+| Tables_in_instagram_clone_db |
++------------------------------+
+| comments                     |
+| follows                      |
+| likes                        |
+| photo_tags                   |
+| photos                       |
+| tags                         |
+| users                        |
++------------------------------+
+7 rows in set (0.00 sec)
+
+mysql> SELECT users.id AS user_id,
+    ->        username,
+    ->        photos.id AS photo_id,
+    ->        photos.image_url,
+    ->        COUNT(*) AS total_likes_count
+    -> FROM photos
+    -> JOIN likes
+    -> ON photos.id = likes.photo_id
+    -> JOIN users
+    -> ON users.id = photos.user_id
+    -> GROUP BY photos.id, users.id, username, photos.image_url
+    -> ORDER BY total_likes_count DESC;
+Empty set (0.00 sec)
+
+mysql>   users.id AS user_id,
+    ->     username,
+    -> 	photos.id AS photo_id,
+    ->     photos.image_url,
+    ->     COUNT(*) AS total_likes_count
+    -> FROM photos
+    ->     JOIN likes
+    ->         ON photos.id = likes.photo_id
+    ->     JOIN users
+    ->         ON users.id = photos.user_id
+    ->     GROUP BY photos.id
+    ->     ORDER BY total_likes_count DESC
+    ->     LIMIT 1;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'users.id AS user_id,
+    username,
+	photos.id AS photo_id,
+    photos.image_url,' at line 1
+mysql> users.id AS user_id,
+    -> username,
+    -> photos.id AS photo_id,
+    -> ...
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'users.id AS user_id,
+username,
+photos.id AS photo_id,
+...' at line 1
+mysql> SELECT
+    ->     tags.id AS tag_id,
+    ->     tags.tag_name,
+    ->     COUNT(*) as total_tags_count
+    -> FROM tags
+    ->     JOIN photo_tags
+    ->         ON tags.id = photo_tags.tag_id
+    ->     GROUP BY tags.id
+    ->     ORDER BY total_tags_count DESC
+    ->     LIMIT 5;
++--------+----------+------------------+
+| tag_id | tag_name | total_tags_count |
++--------+----------+------------------+
+|     21 | smile    |               59 |
+|     20 | beach    |               42 |
+|     17 | party    |               39 |
+|     13 | fun      |               38 |
+|     18 | concert  |               24 |
++--------+----------+------------------+
+5 rows in set (0.00 sec)
+
+mysql> --Find number of users who have liked every single photo on the site?
+    -> ^C
+mysql> SELECT
+    ->     users.id AS user_id,
+    ->     users.username,
+    ->     COUNT(*) AS total_user_likes
+    -> FROM users
+    ->     JOIN likes
+    ->         ON users.id = likes.user_id
+    ->     GROUP BY users.id
+    ->     HAVING total_user_likes = (
+    ->         SELECT COUNT(*) FROM photos
+    ->     );
+Empty set (0.00 sec)
+
+mysql> 
+mysql> SELECT
+    ->     ROUND(
+    ->         ( SELECT COUNT(*) FROM photos ) / ( SELECT COUNT(*) FROM users ),
+    ->         2
+    ->     ) AS avg_user_post;
++---------------+
+| avg_user_post |
++---------------+
+|          2.57 |
++---------------+
+1 row in set (0.00 sec)
+
+mysql> SELECT
+    ->     users.id AS user_id,
+    ->     username,
+    -> 	photos.id AS photo_id,
+    ->     photos.image_url,
+    ->     COUNT(*) AS total_likes_count
+    -> FROM photos
+    ->     JOIN likes
+    ->         ON photos.id = likes.photo_id
+    ->     JOIN users
+    ->         ON users.id = photos.user_id
+    ->     GROUP BY photos.id
+    ->     ORDER BY total_likes_count DESC
+    ->     LIMIT 1;
+Empty set (0.00 sec)
+
+mysql> select *from photes;
+ERROR 1146 (42S02): Table 'instagram_clone_db.photes' doesn't exist
+mysql> select users.id AS user_id,
+    -> users.username,
+    -> COUNT(*) AS total_user_likes
+    -> from users
+    -> join likes
+    -> on user.id=likes.user_id
+    -> group by users.id
+    -> having total_user_likes=(select count(*)from photes);
+ERROR 1146 (42S02): Table 'instagram_clone_db.photes' doesn't exist
+mysql> CREATE DATABASE IF NOT EXISTS jeevan_raksha_pharmacy;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> USE jeevan_raksha_pharmacy;
+Database changed
+mysql> CREATE TABLE customers (
+    ->     customer_id INT AUTO_INCREMENT PRIMARY KEY,
+    ->     name VARCHAR(100),
+    ->     phone VARCHAR(15),
+    ->     city VARCHAR(50)
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> CREATE TABLE suppliers (
+    ->     supplier_id INT AUTO_INCREMENT PRIMARY KEY,
+    ->     supplier_name VARCHAR(100),
+    ->     contact_person VARCHAR(100),
+    ->     phone VARCHAR(15)
+    -> );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> CREATE TABLE medicines (
+    ->     medicine_id INT AUTO_INCREMENT PRIMARY KEY,
+    ->     name VARCHAR(100),
+    ->     category VARCHAR(50),
+    ->     price DECIMAL(10,2),
+    ->     stock_quantity INT,
+    ->     expiry_date DATE,
+    ->     supplier_id INT,
+    ->     FOREIGN KEY (supplier_id) REFERENCES suppliers(supplier_id)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> CREATE TABLE orders (
+    ->     order_id INT AUTO_INCREMENT PRIMARY KEY,
+    ->     customer_id INT,
+    ->     order_date DATE,
+    ->     total_amount DECIMAL(10,2),
+    ->     payment_mode ENUM('UPI', 'Cash', 'Card'),
+    ->     FOREIGN KEY (customer_id) REFERENCES customers(customer_id)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> CREATE TABLE order_items (
+    ->     item_id INT AUTO_INCREMENT PRIMARY KEY,
+    ->     order_id INT,
+    ->     medicine_id INT,
+    ->     quantity INT,
+    ->     subtotal DECIMAL(10,2),
+    ->     FOREIGN KEY (order_id) REFERENCES orders(order_id),
+    ->     FOREIGN KEY (medicine_id) REFERENCES medicines(medicine_id)
+    -> );
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> -- Customers
+mysql> INSERT INTO customers (name, phone, city) VALUES
+    -> ('Rahul Sharma', '9876543210', 'Mumbai'),
+    -> ('Priya Verma', '9123456789', 'Delhi'),
+    -> ('Amit Patel', '9988776655', 'Ahmedabad'),
+    -> ('Sneha Reddy', '8877665544', 'Hyderabad'),
+    -> ('Vikram Singh', '7766554433', 'Mumbai');
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM customers;
++-------------+--------------+------------+-----------+
+| customer_id | name         | phone      | city      |
++-------------+--------------+------------+-----------+
+|           1 | Rahul Sharma | 9876543210 | Mumbai    |
+|           2 | Priya Verma  | 9123456789 | Delhi     |
+|           3 | Amit Patel   | 9988776655 | Ahmedabad |
+|           4 | Sneha Reddy  | 8877665544 | Hyderabad |
+|           5 | Vikram Singh | 7766554433 | Mumbai    |
++-------------+--------------+------------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> - Suppliers
+    -> INSERT INTO suppliers (supplier_name, contact_person, phone) VALUES
+    -> ('Apollo Distributors', 'Rajesh Gupta', '022-123456'),
+    -> ('MedPlus Supply Chain', 'Suresh Nair', '040-987654'),
+    -> ('Himalaya Wellness', 'Anjali Mehta', '011-456789');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '- Suppliers
+INSERT INTO suppliers (supplier_name, contact_person, phone) VALUES
+' at line 1
+mysql> - Suppliers
+    -> INSERT INTO suppliers (supplier_name, contact_person, phone) VALUES
+    -> ('Apollo Distributors', 'Rajesh Gupta', '022-123456'),
+    -> ('MedPlus Supply Chain', 'Suresh Nair', '040-987654'),
+    -> ('Himalaya Wellness', 'Anjali Mehta', '011-456789');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '- Suppliers
+INSERT INTO suppliers (supplier_name, contact_person, phone) VALUES
+' at line 1
+mysql> --suppliers
+    -> ^C
+mysql> ('Himalaya Wellness', 'Anjali Mehta', '011-456789');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''Himalaya Wellness', 'Anjali Mehta', '011-456789')' at line 1
+mysql> INSERT INTO medicines 
+    -> (name, category, price, stock_quantity, expiry_date, supplier_id)
+    -> VALUES
+    -> ('Dolo 650', 'Tablet', 30.00, 500, '2025-12-31', 1),
+    -> ('Azithral 500', 'Tablet', 120.00, 50, '2024-05-20', 1),
+    -> ('Benadryl', 'Syrup', 110.00, 20, '2024-11-15', 2),
+    -> ('Combiflam', 'Tablet', 45.00, 200, '2026-01-01', 3),
+    -> ('Insulin Pen', 'Injection', 800.00, 5, '2024-03-10', 2);
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`jeevan_raksha_pharmacy`.`medicines`, CONSTRAINT `medicines_ibfk_1` FOREIGN KEY (`supplier_id`) REFERENCES `suppliers` (`supplier_id`))
+mysql> INSERT INTO suppliers (supplier_name, contact_person, phone)
+    -> VALUES
+    -> ('Apollo Distributors', 'Rajesh Gupta', '022-123456'),
+    -> ('MedPlus Supply Chain', 'Suresh Nair', '040-987654'),
+    -> ('Himalaya Wellness', 'Anjali Mehta', '011-456789');
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM suppliers;
++-------------+----------------------+----------------+------------+
+| supplier_id | supplier_name        | contact_person | phone      |
++-------------+----------------------+----------------+------------+
+|           1 | Apollo Distributors  | Rajesh Gupta   | 022-123456 |
+|           2 | MedPlus Supply Chain | Suresh Nair    | 040-987654 |
+|           3 | Himalaya Wellness    | Anjali Mehta   | 011-456789 |
++-------------+----------------------+----------------+------------+
+3 rows in set (0.00 sec)
+
+mysql> INSERT INTO medicines
+    -> (name, category, price, stock_quantity, expiry_date, supplier_id)
+    -> VALUES
+    -> ('Dolo 650', 'Tablet', 30.00, 500, '2025-12-31', 1),
+    -> ('Azithral 500', 'Tablet', 120.00, 50, '2024-05-20', 1),
+    -> ('Benadryl', 'Syrup', 110.00, 20, '2024-11-15', 2),
+    -> ('Combiflam', 'Tablet', 45.00, 200, '2026-01-01', 3),
+    -> ('Insulin Pen', 'Injection', 800.00, 5, '2024-03-10', 2);
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM suppliers;
++-------------+----------------------+----------------+------------+
+| supplier_id | supplier_name        | contact_person | phone      |
++-------------+----------------------+----------------+------------+
+|           1 | Apollo Distributors  | Rajesh Gupta   | 022-123456 |
+|           2 | MedPlus Supply Chain | Suresh Nair    | 040-987654 |
+|           3 | Himalaya Wellness    | Anjali Mehta   | 011-456789 |
++-------------+----------------------+----------------+------------+
+3 rows in set (0.00 sec)
+
+mysql> INSERT INTO orders
+    -> (customer_id, order_date, total_amount, payment_mode)
+    -> VALUES
+    -> (1, '2023-10-01', 150.00, 'UPI'),
+    -> (2, '2023-10-02', 240.00, 'Card'),
+    -> (3, '2023-10-05', 45.00, 'Cash'),
+    -> (1, '2023-10-10', 800.00, 'UPI'),
+    -> (4, '2023-10-12', 1200.00, 'Card');
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> INSERT INTO order_items
+    -> (order_id, medicine_id, quantity, subtotal)
+    -> VALUES
+    -> (1, 1, 5, 150.00),
+    -> (2, 2, 2, 240.00),
+    -> (3, 4, 1, 45.00),
+    -> (4, 5, 1, 800.00),
+    -> (5, 5, 1, 800.00),
+    -> (5, 2, 2, 240.00),
+    -> (5, 1, 5, 150.00);
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`jeevan_raksha_pharmacy`.`order_items`, CONSTRAINT `order_items_ibfk_2` FOREIGN KEY (`medicine_id`) REFERENCES `medicines` (`medicine_id`))
+mysql> INSERT INTO order_items
+    -> (order_id, medicine_id, quantity, subtotal)
+    -> VALUES
+    -> (1, 1, 5, 150.00),
+    -> (2, 2, 2, 240.00),
+    -> (3, 4, 1, 45.00),
+    -> (4, 5, 1, 800.00),
+    -> (5, 5, 1, 800.00),
+    -> (5, 2, 2, 240.00),
+    -> (5, 1, 5, 150.00);
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`jeevan_raksha_pharmacy`.`order_items`, CONSTRAINT `order_items_ibfk_2` FOREIGN KEY (`medicine_id`) REFERENCES `medicines` (`medicine_id`))
+mysql> SELECT * FROM medicines;
++-------------+--------------+-----------+--------+----------------+-------------+-------------+
+| medicine_id | name         | category  | price  | stock_quantity | expiry_date | supplier_id |
++-------------+--------------+-----------+--------+----------------+-------------+-------------+
+|           6 | Dolo 650     | Tablet    |  30.00 |            500 | 2025-12-31  |           1 |
+|           7 | Azithral 500 | Tablet    | 120.00 |             50 | 2024-05-20  |           1 |
+|           8 | Benadryl     | Syrup     | 110.00 |             20 | 2024-11-15  |           2 |
+|           9 | Combiflam    | Tablet    |  45.00 |            200 | 2026-01-01  |           3 |
+|          10 | Insulin Pen  | Injection | 800.00 |              5 | 2024-03-10  |           2 |
++-------------+--------------+-----------+--------+----------------+-------------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT * FROM orders;
++----------+-------------+------------+--------------+--------------+
+| order_id | customer_id | order_date | total_amount | payment_mode |
++----------+-------------+------------+--------------+--------------+
+|        1 |           1 | 2023-10-01 |       150.00 | UPI          |
+|        2 |           2 | 2023-10-02 |       240.00 | Card         |
+|        3 |           3 | 2023-10-05 |        45.00 | Cash         |
+|        4 |           1 | 2023-10-10 |       800.00 | UPI          |
+|        5 |           4 | 2023-10-12 |      1200.00 | Card         |
++----------+-------------+------------+--------------+--------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT * FROM order_items;
+Empty set (0.00 sec)
+
+mysql> SELECT customer_name, city
+    -> FROM customers;
+ERROR 1054 (42S22): Unknown column 'customer_name' in 'field list'
+mysql> SELECT name, city
+    -> FROM customers;
++--------------+-----------+
+| name         | city      |
++--------------+-----------+
+| Rahul Sharma | Mumbai    |
+| Priya Verma  | Delhi     |
+| Amit Patel   | Ahmedabad |
+| Sneha Reddy  | Hyderabad |
+| Vikram Singh | Mumbai    |
++--------------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> stock check :find the names of medicines that are 'syrup'or 'injection'.
+    -> ^C
+mysql> SELECT name
+    -> FROM medicines
+    -> WHERE category IN ('Syrup', 'Injection');
++-------------+
+| name        |
++-------------+
+| Benadryl    |
+| Insulin Pen |
++-------------+
+2 rows in set (0.00 sec)
+
+mysql> select *from orders where total_amount>500;
++----------+-------------+------------+--------------+--------------+
+| order_id | customer_id | order_date | total_amount | payment_mode |
++----------+-------------+------------+--------------+--------------+
+|        4 |           1 | 2023-10-10 |       800.00 | UPI          |
+|        5 |           4 | 2023-10-12 |      1200.00 | Card         |
++----------+-------------+------------+--------------+--------------+
+2 rows in set (0.00 sec)
+
+mysql> select name,phone from customer where city='mumbai';
+ERROR 1146 (42S02): Table 'jeevan_raksha_pharmacy.customer' doesn't exist
+mysql> SELECT name, phone
+    -> FROM customers
+    -> WHERE city = 'Mumbai';
++--------------+------------+
+| name         | phone      |
++--------------+------------+
+| Rahul Sharma | 9876543210 |
+| Vikram Singh | 7766554433 |
++--------------+------------+
+2 rows in set (0.00 sec)
+
+mysql> select *from orders;
++----------+-------------+------------+--------------+--------------+
+| order_id | customer_id | order_date | total_amount | payment_mode |
++----------+-------------+------------+--------------+--------------+
+|        1 |           1 | 2023-10-01 |       150.00 | UPI          |
+|        2 |           2 | 2023-10-02 |       240.00 | Card         |
+|        3 |           3 | 2023-10-05 |        45.00 | Cash         |
+|        4 |           1 | 2023-10-10 |       800.00 | UPI          |
+|        5 |           4 | 2023-10-12 |      1200.00 | Card         |
++----------+-------------+------------+--------------+--------------+
+5 rows in set (0.00 sec)
+
+mysql> select  c.name,o.order_date,o.total_amount from customers c
+    -> join order o
+    -> on c.customer_id=o.customer_id;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'order o
+on c.customer_id=o.customer_id' at line 2
+mysql> ^C
+mysql> SELECT c.name,
+    ->        o.order_date,
+    ->        o.total_amount
+    -> FROM customers c
+    -> JOIN `order` o
+    -> ON c.customer_id = o.customer_id;
+ERROR 1146 (42S02): Table 'jeevan_raksha_pharmacy.order' doesn't exist
+mysql> Terminal close -- exit!
